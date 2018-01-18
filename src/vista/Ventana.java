@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import modelo.Comida;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Ventana extends JFrame {
     private Serpiente serpiente;
     private Timer tiempo;
     int ban = 0;
+    private Comida comida;
 
     public Ventana() {
         this.setTitle("Snake");
@@ -55,11 +57,35 @@ public class Ventana extends JFrame {
         
         this.add(this.panelJuego);
         
-        this.tiempo = new Timer(300, new ActionListener(){
+        this.comida = new Comida();
+        this.panelJuego.add(this.comida.getComida(),0);
+        
+        this.tiempo = new Timer(100, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                comida.getComi().setBounds(comida.getComida().getBounds());
+                serpiente.getSerp().setBounds(serpiente.getSerpiente().get(0).getBounds());
+                if(comida.getComi().intersects(serpiente.getSerp())){
+                    comida.setX(comida.getAleatorio().nextInt(470));
+                    comida.setY(comida.getAleatorio().nextInt(470));
+                    comida.getComida().setLocation(comida.getX(),comida.getY());
+                    comida.getComida().repaint();
+                    Serpiente s = new Serpiente();
+                    s.getAux().setLocation(200,200);
+                    s.getAux().setSize(20,20);
+                    s.getAux().setIcon(new ImageIcon("imagenes/cuerpo.png"));
+                    s.getAux().setVisible(true);
+                    serpiente.getSerpiente().add(s.getAux());
+                    panelJuego.add(serpiente.getSerpiente().get(serpiente.getSerpiente().size()-1),0);
+                    System.out.println(serpiente.getSerpiente().size());
+                }
+                
+                for(int i=serpiente.getSerpiente().size()-1;i>0;i--){
+                    serpiente.getSerpiente().get(i).setLocation(serpiente.getSerpiente().get(i-1).getLocation());
+                    serpiente.getSerpiente().get(i).repaint();
+                }
                 serpiente.getSerpiente().get(0).setLocation(serpiente.getSerpiente().get(0).getX()+serpiente.getX(), serpiente.getSerpiente().get(0).getY()+serpiente.getY());
-                serpiente.getSerpiente().get(0).repaint();
+                
                 
             }
         });

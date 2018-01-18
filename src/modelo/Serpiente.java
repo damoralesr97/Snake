@@ -1,6 +1,7 @@
 package modelo;
 
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -22,6 +23,7 @@ public class Serpiente {
     private int x;
     private int y;
     private int desplazamiento=20;
+    private Rectangle serp;
 
     public Serpiente() {
         this.aux = new JLabel();
@@ -30,6 +32,7 @@ public class Serpiente {
         this.aux.setIcon(new ImageIcon("imagenes/caraDer.png"));
         this.aux.setVisible(true);
         this.serpiente.add(this.aux);
+        this.serp = new Rectangle(this.serpiente.get(0).getBounds());
     }
 
     public ArrayList<JLabel> getSerpiente() {
@@ -71,6 +74,14 @@ public class Serpiente {
 
     public void setDesplazamiento(int desplazamiento) {
         this.desplazamiento = desplazamiento;
+    }
+
+    public Rectangle getSerp() {
+        return serp;
+    }
+
+    public void setSerp(Rectangle serp) {
+        this.serp = serp;
     }
     
     
