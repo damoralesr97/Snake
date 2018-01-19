@@ -26,8 +26,8 @@ public class Comida {
         this.comida.setSize(20, 20);
         this.comida.setIcon(new ImageIcon("imagenes/comida.png"));
         aleatorio = new Random();
-        this.x=aleatorio.nextInt(470);
-        this.y=aleatorio.nextInt(470);
+        this.x=aleatorio.nextInt(460);
+        this.y=aleatorio.nextInt(460);
         this.comida.setLocation(x, y);
         this.comida.setVisible(true);
         this.comi = new Rectangle(this.comida.getBounds());

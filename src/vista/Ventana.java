@@ -32,6 +32,7 @@ public class Ventana extends JFrame {
     private Timer tiempo;
     int ban = 0;
     private Comida comida;
+    private int perdio=0;
 
     public Ventana() {
         this.setTitle("Snake");
@@ -65,9 +66,25 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 comida.getComi().setBounds(comida.getComida().getBounds());
                 serpiente.getSerp().setBounds(serpiente.getSerpiente().get(0).getBounds());
+                if(serpiente.getSerpiente().get(0).getX() > 500){
+                    perdio=1;
+                }
+                if(serpiente.getSerpiente().get(0).getX() < 0){
+                    perdio=1;
+                }
+                if(serpiente.getSerpiente().get(0).getY() > 500){
+                    perdio=1;
+                }
+                if(serpiente.getSerpiente().get(0).getY() < 0){
+                    perdio=1;
+                }
+                if(perdio==1){
+                    tiempo.stop();
+                }
+                
                 if(comida.getComi().intersects(serpiente.getSerp())){
-                    comida.setX(comida.getAleatorio().nextInt(470));
-                    comida.setY(comida.getAleatorio().nextInt(470));
+                    comida.setX(comida.getAleatorio().nextInt(460));
+                    comida.setY(comida.getAleatorio().nextInt(460));
                     comida.getComida().setLocation(comida.getX(),comida.getY());
                     comida.getComida().repaint();
                     Serpiente s = new Serpiente();
