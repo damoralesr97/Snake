@@ -62,7 +62,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         this.comida = new Comida();
         this.panelJuego.add(this.comida.getComida(),0);
         
-        this.tiempo = new Timer(100, new ActionListener(){
+        this.tiempo = new Timer(150, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 
