@@ -25,7 +25,7 @@ import modelo.Comida;
  *
  * @author DavidMorales
  */
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements java.awt.event.KeyListener{
     private JPanel panelJuego;
     private JLabel fondo;
     private Serpiente serpiente;
@@ -41,6 +41,7 @@ public class Ventana extends JFrame {
         this.setLayout(null);
         this.setDefaultCloseOperation(3);
         this.setResizable(false);
+        this.addKeyListener(this);
         
         this.panelJuego = new JPanel();
         this.panelJuego.setSize(this.getSize());
@@ -64,6 +65,15 @@ public class Ventana extends JFrame {
         this.tiempo = new Timer(100, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                for(int i=serpiente.getSerpiente().size()-1;i>0;i--){
+                    if(serpiente.getSerpiente().get(0).getLocation().equals(serpiente.getSerpiente().get(i).getLocation())){
+                        tiempo.stop();
+                    }
+                }
+                
+                
+                
                 comida.getComi().setBounds(comida.getComida().getBounds());
                 serpiente.getSerp().setBounds(serpiente.getSerpiente().get(0).getBounds());
                 if(serpiente.getSerpiente().get(0).getX() > 500){
@@ -94,8 +104,9 @@ public class Ventana extends JFrame {
                     s.getAux().setVisible(true);
                     serpiente.getSerpiente().add(s.getAux());
                     panelJuego.add(serpiente.getSerpiente().get(serpiente.getSerpiente().size()-1),0);
-                    System.out.println(serpiente.getSerpiente().size());
                 }
+                
+                
                 
                 for(int i=serpiente.getSerpiente().size()-1;i>0;i--){
                     serpiente.getSerpiente().get(i).setLocation(serpiente.getSerpiente().get(i-1).getLocation());
@@ -108,18 +119,18 @@ public class Ventana extends JFrame {
         });
         
         
-        
-        
-        this.addKeyListener(new KeyListener(){
-            @Override
-            public void keyTyped(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
+        this.setVisible(true);
+    }
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_UP){
-                    System.out.println("Arriba");
+    @Override
+    public void keyTyped(KeyEvent e) {
+    
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    if(e.getKeyCode() == KeyEvent.VK_UP){
+                    //System.out.println("Arriba");
                     if(serpiente.getSerpiente().get(0).getY() > 0){
                         serpiente.setY(-(serpiente.getDesplazamiento()));
                         serpiente.setX(0);
@@ -131,7 +142,7 @@ public class Ventana extends JFrame {
                     }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                    System.out.println("Abajo");
+                    //System.out.println("Abajo");
                     if(serpiente.getSerpiente().get(0).getY() < 500){
                         serpiente.setY(serpiente.getDesplazamiento());
                         serpiente.setX(0);
@@ -143,7 +154,7 @@ public class Ventana extends JFrame {
                     }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_LEFT){
-                    System.out.println("Izquierda");
+                    //System.out.println("Izquierda");
                     if(serpiente.getSerpiente().get(0).getX() > 0){
                         serpiente.setY(0);
                         serpiente.setX(-(serpiente.getDesplazamiento()));
@@ -155,7 +166,7 @@ public class Ventana extends JFrame {
                     }
                 }
                 if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    System.out.println("Derecha");
+                    //System.out.println("Derecha");
                     if(serpiente.getSerpiente().get(0).getX() < 500){
                         serpiente.setY(0);
                         serpiente.setX(serpiente.getDesplazamiento());
@@ -165,16 +176,11 @@ public class Ventana extends JFrame {
                         tiempo.start();
                         ban=1;
                     }
-                }
-            }
+                }}
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-        
-        this.setVisible(true);
+    @Override
+    public void keyReleased(KeyEvent e) {
+    
     }
     
     
