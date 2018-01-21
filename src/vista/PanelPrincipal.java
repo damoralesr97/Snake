@@ -55,7 +55,7 @@ public class PanelPrincipal extends JFrame implements ActionListener {
         this.setSize(300, 150);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(3);
+        this.setDefaultCloseOperation(2);
         this.panel = new JPanel(new GridLayout(2, 1));
         this.panel.setBackground(Color.LIGHT_GRAY);
 
