@@ -5,22 +5,16 @@
  */
 package vista;
 
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.Jugador;
 import snake.GestionDato;
 
-/**
- *
- * @author Pedro
- */
 public class VentanaJugador extends JFrame {
     
     private GestionDato gD;
@@ -30,13 +24,13 @@ public class VentanaJugador extends JFrame {
     private DefaultTableModel modeloTabla;
     private Object[] encabezado;
     private Object[][] datos;
-    
+
     public VentanaJugador(GestionDato gD) {
         
-        super("Registro Jugador");
+        super("TOP JUGADORES");
         this.gD = gD;
-        this.panel = new JPanel();
-        this.setSize(500, 500);
+        this.panel = new JPanel(new BorderLayout());
+        this.setSize(400, 200);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
@@ -55,9 +49,6 @@ public class VentanaJugador extends JFrame {
         this.add(this.panel);
         
     }
-    
-    
-    
     public Object[][] cargarDatosTabla(int m, int n) {       
         Object[][] retorno = new Object[m][n];
         
@@ -67,8 +58,7 @@ public class VentanaJugador extends JFrame {
             retorno[i][1] = j.getNombre();
             retorno[i][2] = j.getNivel();
             retorno[i][3] = j.getScore();
-        }
-        
+        } 
         return retorno; 
     }
     

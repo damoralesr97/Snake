@@ -48,7 +48,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         this.setSize(500, 500);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        //this.setDefaultCloseOperation(3);
+        this.setDefaultCloseOperation(3);
         this.setResizable(false);
         this.addKeyListener(this);
         
@@ -61,7 +61,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         
         this.fondo = new JLabel();
         this.fondo.setSize(this.panelJuego.getSize());
-        this.fondo.setIcon(new ImageIcon("imagenes/ne.gif"));
+        this.fondo.setIcon(new ImageIcon("imagenes/fondo.png"));
         this.fondo.setVisible(true);
         this.panelJuego.add(this.fondo,0);
         

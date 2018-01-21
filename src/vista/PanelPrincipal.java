@@ -32,7 +32,7 @@ import snake.GestionDato;
  * @author Pedro
  */
 public class PanelPrincipal extends JFrame implements ActionListener {
-    
+
     private GestionDato gD;
     private JDesktopPane escritorio;
     private JPanel panel;
@@ -42,25 +42,23 @@ public class PanelPrincipal extends JFrame implements ActionListener {
     private List<JMenuItem> menuItemList;
     private JButton nuevoJuego = new JButton("Nuevo Juego");
     private JComboBox comboDif;
-    private JButton puntajes = new JButton("Puntajes");
-    private JButton salir = new JButton("Salir");
     private JLabel nombre = new JLabel("Nombre:");
     private JTextField txtNom = new JTextField(15);
     private JButton aceptar = new JButton("Aceptar");
     private String[] datosCombo;
     private Jugador jugador;
-    
+
     public PanelPrincipal(GestionDato gD) {
-        
+
         this.setTitle("Snake");
         this.gD = gD;
-        this.setSize(500, 500);
+        this.setSize(300, 150);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(3);
-        this.panel = new JPanel(new GridLayout(4,1));
+        this.panel = new JPanel(new GridLayout(2, 1));
         this.panel.setBackground(Color.LIGHT_GRAY);
-        
+
         this.datosCombo = new String[3];
         datosCombo[0] = "Facil";
         datosCombo[1] = "Normal";
@@ -68,33 +66,21 @@ public class PanelPrincipal extends JFrame implements ActionListener {
         this.comboDif = new JComboBox(datosCombo);
         this.comboDif.setBackground(Color.green);
         this.comboDif.setName("Dificultad");
- 
+
         this.nuevoJuego.setBackground(Color.GREEN);
-        this.puntajes.setBackground(Color.green);
-        this.salir.setBackground(Color.red);
-        this.salir.setForeground(Color.white);
-        
+
         this.nuevoJuego.addActionListener(this);
-        this.puntajes.addActionListener(this);
-        this.salir.addActionListener(this);
-        
+
         this.panel.add(this.nuevoJuego);
         this.panel.add(this.comboDif);
-        this.panel.add(this.puntajes);
-        this.panel.add(this.salir);
-        
-        
-        
-        
+
         this.add(this.panel);
-        this.setVisible(true);
-        
-    }
+      }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
-        if(ae.getSource().equals(this.nuevoJuego)) {
+
+        if (ae.getSource().equals(this.nuevoJuego)) {
             this.panelJugador = new JPanel();
             this.panelJugador.add(this.nombre);
             this.panelJugador.add(this.txtNom);
@@ -106,21 +92,9 @@ public class PanelPrincipal extends JFrame implements ActionListener {
             nP.setSize(200, 130);
             nP.add(this.panelJugador);
             nP.setVisible(true);
-            
-            
+
         }
-        if(ae.getSource().equals(this.puntajes)) {
-            System.out.println("Puntajes");
-            VentanaJugador vJ = new VentanaJugador(this.gD);
-            vJ.setVisible(true);
-        }
-        if(ae.getSource().equals(this.salir)) {
-            
-            
-            
-            
-        }
-        if(ae.getSource().equals(this.aceptar)) {
+        if (ae.getSource().equals(this.aceptar)) {
             String nombreJ = this.txtNom.getText();
             int sel = this.comboDif.getSelectedIndex();
             String dif = this.datosCombo[sel];
@@ -130,9 +104,7 @@ public class PanelPrincipal extends JFrame implements ActionListener {
             bD.insertarJugador(jugador);
             System.out.println("Nuevo Juego");
             Ventana v = new Ventana(jugador);
-            
         }
-        
     }
 
     public GestionDato getgD() {
@@ -207,22 +179,6 @@ public class PanelPrincipal extends JFrame implements ActionListener {
         this.comboDif = comboDif;
     }
 
-    public JButton getPuntajes() {
-        return puntajes;
-    }
-
-    public void setPuntajes(JButton puntajes) {
-        this.puntajes = puntajes;
-    }
-
-    public JButton getSalir() {
-        return salir;
-    }
-
-    public void setSalir(JButton salir) {
-        this.salir = salir;
-    }
-
     public JLabel getNombre() {
         return nombre;
     }
@@ -262,7 +218,5 @@ public class PanelPrincipal extends JFrame implements ActionListener {
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
-    
-    
-    
+
 }

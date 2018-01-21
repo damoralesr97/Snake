@@ -17,19 +17,11 @@ import vista.PanelPrincipal;
 
 import vista.Ventana;
 import sun.audio.*;
-/**
- *
- * @author DavidMorales
- */
+import vista.VentanaJugador;
+import vista.VentanaMenu;
 public class Principal {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        // TODO code application logic here
-
-       
+      
         String sonido="musica/fondo.wav";
         InputStream in = new FileInputStream(sonido);
         AudioStream au = new AudioStream(in);
@@ -39,10 +31,7 @@ public class Principal {
         
         List<Jugador> jL = new ArrayList<Jugador>(bD.cargarJugadorList());
         GestionDato gD = new GestionDato(jL);
-        PanelPrincipal panel1 = new PanelPrincipal(gD);
-        
-
-        
+        VentanaMenu ventana=new VentanaMenu(gD);       
        
     }
     

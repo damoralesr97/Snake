@@ -9,10 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-/**
- *
- * @author Pedro
- */
 @Entity
 public class Jugador implements Serializable {
     
