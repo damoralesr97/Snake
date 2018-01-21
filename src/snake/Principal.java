@@ -5,10 +5,16 @@
  */
 package snake;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import modelo.Jugador;
+import vista.PanelPrincipal;
+
 import vista.Ventana;
 import sun.audio.*;
 /**
@@ -22,13 +28,20 @@ public class Principal {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
+
        
         String sonido="musica/fondo.wav";
         InputStream in = new FileInputStream(sonido);
         AudioStream au = new AudioStream(in);
         AudioPlayer.player.start(au);
+
+        BaseDatos bD = new BaseDatos();
         
-        Ventana v = new Ventana();
+        List<Jugador> jL = new ArrayList<Jugador>(bD.cargarJugadorList());
+        GestionDato gD = new GestionDato(jL);
+        PanelPrincipal panel1 = new PanelPrincipal(gD);
+        
+
         
        
     }

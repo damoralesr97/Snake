@@ -7,6 +7,7 @@ package vista;
 
 import modelo.Serpiente;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
@@ -20,29 +21,34 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import modelo.Comida;
+import modelo.Jugador;
+import snake.GestionDato;
 
 /**
  *
  * @author DavidMorales
  */
 public class Ventana extends JFrame implements java.awt.event.KeyListener{
+    private Jugador jugador;
     private JPanel panelJuego;
     private JLabel fondo;
+    private JLabel score;
     private Serpiente serpiente;
     private Timer tiempo;
     int ban = 0;
     private Comida comida;
+    private GestionDato gD;
     private int perdio=0;
+    private int puntaje = 0;
+    private int num = 0;
 
-    
-    
-    
-    public Ventana() {
+    public Ventana(Jugador jugador) {
+        this.jugador = jugador;
         this.setTitle("Snake");
         this.setSize(500, 500);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
-        this.setDefaultCloseOperation(3);
+        //this.setDefaultCloseOperation(3);
         this.setResizable(false);
         this.addKeyListener(this);
         
@@ -59,6 +65,12 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         this.fondo.setVisible(true);
         this.panelJuego.add(this.fondo,0);
         
+        this.score = new JLabel(Integer.toString(puntaje));
+        this.score.setSize(50, 100);
+        this.score.setLocation(130, -18);
+        this.score.setFont(new Font("Serif", Font.PLAIN, 35));
+        this.fondo.add(score);
+        
         this.serpiente = new Serpiente();
         this.panelJuego.add(this.serpiente.getSerpiente().get(0),0);
         
@@ -74,6 +86,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                 for(int i=serpiente.getSerpiente().size()-1;i>0;i--){
                     if(serpiente.getSerpiente().get(0).getLocation().equals(serpiente.getSerpiente().get(i).getLocation())){
                         tiempo.stop();
+                        System.out.println(puntaje);
                     }
                 }
                 
@@ -95,6 +108,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                 }
                 if(perdio==1){
                     tiempo.stop();
+                    System.out.println(puntaje);
                 }
                 
                 if(comida.getComi().intersects(serpiente.getSerp())){
@@ -112,6 +126,9 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                     s.getAux().setVisible(true);
                     serpiente.getSerpiente().add(s.getAux());
                     panelJuego.add(serpiente.getSerpiente().get(serpiente.getSerpiente().size()-1),0);
+                    puntaje++;                    
+                    score.setText(Integer.toString(puntaje));
+                    jugador.setScore(puntaje);
                 }
                 
                 
