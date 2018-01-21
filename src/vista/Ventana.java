@@ -34,6 +34,9 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
     private Comida comida;
     private int perdio=0;
 
+    
+    
+    
     public Ventana() {
         this.setTitle("Snake");
         this.setSize(500, 500);
@@ -43,6 +46,8 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         this.setResizable(false);
         this.addKeyListener(this);
         
+        
+        
         this.panelJuego = new JPanel();
         this.panelJuego.setSize(this.getSize());
         this.panelJuego.setLayout(null);
@@ -50,7 +55,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         
         this.fondo = new JLabel();
         this.fondo.setSize(this.panelJuego.getSize());
-        this.fondo.setIcon(new ImageIcon("imagenes/fondo.png"));
+        this.fondo.setIcon(new ImageIcon("imagenes/ne.gif"));
         this.fondo.setVisible(true);
         this.panelJuego.add(this.fondo,0);
         
@@ -96,6 +101,9 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                     comida.setX(comida.getAleatorio().nextInt(460));
                     comida.setY(comida.getAleatorio().nextInt(460));
                     comida.getComida().setLocation(comida.getX(),comida.getY());
+                    
+                    
+                    //INSERTAR AUIDIO
                     comida.getComida().repaint();
                     Serpiente s = new Serpiente();
                     s.getAux().setLocation(200,200);
