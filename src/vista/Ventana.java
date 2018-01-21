@@ -41,6 +41,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
     private int perdio=0;
     private int puntaje = 0;
     private int num = 0;
+        private GameOver terminado;
 
     public Ventana(Jugador jugador) {
         this.jugador = jugador;
@@ -74,6 +75,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
         this.serpiente = new Serpiente();
         this.panelJuego.add(this.serpiente.getSerpiente().get(0),0);
         
+        this.terminado=new GameOver();
         this.add(this.panelJuego);
         
         this.comida = new Comida();
@@ -85,13 +87,11 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                 
                 for(int i=serpiente.getSerpiente().size()-1;i>0;i--){
                     if(serpiente.getSerpiente().get(0).getLocation().equals(serpiente.getSerpiente().get(i).getLocation())){
+                        terminado.setVisible(true);
                         tiempo.stop();
                         System.out.println(puntaje);
                     }
-                }
-                
-                
-                
+                }              
                 comida.getComi().setBounds(comida.getComida().getBounds());
                 serpiente.getSerp().setBounds(serpiente.getSerpiente().get(0).getBounds());
                 if(serpiente.getSerpiente().get(0).getX() > 500){
@@ -107,6 +107,7 @@ public class Ventana extends JFrame implements java.awt.event.KeyListener{
                     perdio=1;
                 }
                 if(perdio==1){
+                    terminado.setVisible(true);
                     tiempo.stop();
                     System.out.println(puntaje);
                 }
